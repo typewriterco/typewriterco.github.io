@@ -13,7 +13,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: radial-gradient(circle at center, #0a0a15 0%, #000000 100%);
+            background: #000000;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             overflow: hidden;
         }
@@ -25,10 +25,27 @@
             z-index: 10;
         }
         
-        /* Yin-Yang inspired circular frame */
+        /* Quantum field effect */
+        .quantum-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .field-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.4), transparent);
+            width: 100%;
+        }
+        
+        /* Holographic circle frame */
         .circle-frame {
-            width: 400px;
-            height: 400px;
+            width: 450px;
+            height: 450px;
             position: relative;
             margin: 0 auto;
         }
@@ -37,11 +54,23 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            border: 3px solid transparent;
+            border: 2px solid transparent;
             border-radius: 50%;
-            background: linear-gradient(#0a0a15, #0a0a15) padding-box,
-                        linear-gradient(135deg, #4a5568, #64748b, #0ea5e9, #06b6d4) border-box;
-            animation: rotate 20s linear infinite;
+            background: linear-gradient(#000, #000) padding-box,
+                        linear-gradient(135deg, #8b5cf6, #ec4899, #06b6d4, #10b981, #8b5cf6) border-box;
+            animation: rotate 25s linear infinite;
+            filter: blur(0.5px);
+        }
+        
+        .inner-ring {
+            position: absolute;
+            width: 85%;
+            height: 85%;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50%;
+            top: 7.5%;
+            left: 7.5%;
+            animation: rotate 15s linear infinite reverse;
         }
         
         @keyframes rotate {
@@ -49,172 +78,239 @@
             to { transform: rotate(360deg); }
         }
         
-        .inner-symbol {
+        /* Glitch hexagon grid */
+        .hex-grid {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
         }
         
-        /* Typewriter key in center - represents precision (Bowden) */
+        .hex {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: rgba(139, 92, 246, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        
+        /* Central holographic key */
         .central-key {
             position: absolute;
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(145deg, #1e293b, #0f172a);
-            border: 2px solid #0ea5e9;
-            border-radius: 8px;
+            width: 100px;
+            height: 100px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 36px;
-            color: #06b6d4;
-            font-weight: bold;
-            box-shadow: 0 0 30px rgba(14, 165, 233, 0.4),
-                        inset 0 0 20px rgba(6, 182, 212, 0.15);
+            font-size: 48px;
+            color: #ec4899;
+            font-weight: 700;
+            text-shadow: 
+                0 0 20px rgba(236, 72, 153, 0.8),
+                0 0 40px rgba(139, 92, 246, 0.6),
+                0 0 60px rgba(6, 182, 212, 0.4);
+            filter: drop-shadow(0 0 30px rgba(236, 72, 153, 0.5));
         }
         
-        /* Flowing particles - represents harmony/flow (Jong) */
-        .particle {
+        .key-bg {
             position: absolute;
-            width: 3px;
-            height: 3px;
-            background: #0ea5e9;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2), transparent 70%);
+            border-radius: 12px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            box-shadow: 
+                inset 0 0 30px rgba(236, 72, 153, 0.3),
+                0 0 50px rgba(139, 92, 246, 0.4);
+        }
+        
+        /* Plasma particles */
+        .plasma-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
             border-radius: 50%;
-            box-shadow: 0 0 10px #0ea5e9;
+            box-shadow: 0 0 15px currentColor;
         }
         
-        /* Hexagonal precision markers (industrial) */
-        .hex {
+        /* Data streams */
+        .data-stream {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            background: rgba(71, 85, 105, 0.25);
-            border: 1px solid #475569;
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(180deg, transparent, #8b5cf6, transparent);
+            opacity: 0;
         }
         
-        /* Company name - futuristic typography */
+        /* Company name - cyberpunk style */
         .brand-container {
-            margin-top: 40px;
+            margin-top: 50px;
             position: relative;
         }
         
         .company-name {
-            font-size: 56px;
-            font-weight: 300;
-            letter-spacing: 8px;
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: 12px;
             margin: 0;
             position: relative;
+            text-transform: uppercase;
         }
         
         .name-part {
             display: inline-block;
             opacity: 0;
+            position: relative;
         }
         
         .typewriter-text {
-            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #67e8f9 100%);
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #06b6d4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 600;
-            letter-spacing: 4px;
+            text-shadow: 0 0 80px rgba(139, 92, 246, 0.5);
+            filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.6));
         }
         
         .co-text {
-            background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
+            background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 200;
-            margin-left: 8px;
+            margin-left: 12px;
+            filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.5));
         }
         
-        /* Philosophical tagline */
+        /* Glitch effect */
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+        
+        .glitch::before {
+            color: #ec4899;
+            z-index: -1;
+            animation: glitch1 2s infinite;
+        }
+        
+        .glitch::after {
+            color: #06b6d4;
+            z-index: -2;
+            animation: glitch2 2s infinite;
+        }
+        
+        @keyframes glitch1 {
+            0%, 100% { transform: translate(0); opacity: 0; }
+            20% { transform: translate(-2px, 2px); opacity: 0.8; }
+            40% { transform: translate(-2px, -2px); opacity: 0; }
+            60% { transform: translate(2px, 2px); opacity: 0.8; }
+            80% { transform: translate(2px, -2px); opacity: 0; }
+        }
+        
+        @keyframes glitch2 {
+            0%, 100% { transform: translate(0); opacity: 0; }
+            20% { transform: translate(2px, -2px); opacity: 0.8; }
+            40% { transform: translate(2px, 2px); opacity: 0; }
+            60% { transform: translate(-2px, -2px); opacity: 0.8; }
+            80% { transform: translate(-2px, 2px); opacity: 0; }
+        }
+        
+        /* Philosophy tagline - more rebellious */
         .philosophy-line {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 30px;
-            margin-top: 20px;
-            font-size: 11px;
-            letter-spacing: 3px;
+            gap: 25px;
+            margin-top: 25px;
+            font-size: 10px;
+            letter-spacing: 5px;
             text-transform: uppercase;
             opacity: 0;
+            font-weight: 600;
         }
         
         .philosophy-part {
-            color: #0ea5e9;
+            color: #8b5cf6;
             position: relative;
+            text-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
         }
         
         .divider {
-            width: 40px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #475569, transparent);
-        }
-        
-        /* Energy lines - balance concept */
-        .energy-line {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #06b6d4, transparent);
-            width: 0;
-            opacity: 0;
-        }
-        
-        /* Background ambient particles */
-        .ambient-particle {
-            position: fixed;
-            width: 2px;
+            width: 30px;
             height: 2px;
-            background: rgba(14, 165, 233, 0.25);
-            border-radius: 50%;
-            pointer-events: none;
+            background: linear-gradient(90deg, #ec4899, #8b5cf6, #06b6d4);
         }
         
-        .pulse-ring {
+        /* Energy waves */
+        .energy-wave {
             position: absolute;
             width: 100%;
             height: 100%;
-            border: 1px solid #06b6d4;
+            border: 1px solid transparent;
             border-radius: 50%;
             opacity: 0;
+        }
+        
+        /* Scan line effect */
+        .scan-line {
+            position: fixed;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);
             top: 0;
-            left: 0;
+            animation: scan 8s linear infinite;
+        }
+        
+        @keyframes scan {
+            0%, 100% { top: 0%; }
+            50% { top: 100%; }
         }
     </style>
 </head>
 <body>
+    <!-- Sci-fi effects -->
+    <div class="quantum-field" id="quantumField"></div>
+    <div class="scan-line"></div>
+    
     <div class="logo-container" id="logoContainer">
         <div class="circle-frame">
             <div class="outer-ring"></div>
-            <div class="pulse-ring"></div>
-            <div class="pulse-ring" style="animation-delay: 0.5s;"></div>
+            <div class="inner-ring"></div>
+            <div class="energy-wave"></div>
+            <div class="energy-wave"></div>
+            <div class="hex-grid" id="hexGrid"></div>
             
-            <div class="inner-symbol">
-                <!-- Central typewriter key -->
-                <div class="central-key">T</div>
+            <div class="central-key">
+                <div class="key-bg"></div>
+                <span class="glitch" data-text="T">T</span>
             </div>
         </div>
         
         <div class="brand-container">
             <h1 class="company-name">
-                <span class="name-part typewriter-text">TYPEWRITER</span><span class="name-part co-text">CO</span>
+                <span class="name-part typewriter-text glitch" data-text="TYPEWRITER">TYPEWRITER</span><span class="name-part co-text">CO</span>
             </h1>
             
             <div class="philosophy-line">
-                <span class="philosophy-part">Precision</span>
+                <span class="philosophy-part">BREAK LIMITS</span>
                 <div class="divider"></div>
-                <span class="philosophy-part">Flow</span>
-                <div class="divider"></div>
-                <span class="philosophy-part">Transform</span>
+                <span class="philosophy-part">BUILD FUTURES</span>
             </div>
         </div>
     </div>
@@ -222,129 +318,162 @@
     <script>
         function initAnimation() {
             const frame = document.querySelector('.circle-frame');
+            const quantumField = document.getElementById('quantumField');
+            const hexGrid = document.getElementById('hexGrid');
             
-            // Create flowing particles (Jong philosophy - flow)
-            for (let i = 0; i < 30; i++) {
+            // Create quantum field lines
+            for (let i = 0; i < 15; i++) {
+                const line = document.createElement('div');
+                line.className = 'field-line';
+                line.style.top = (i * 7) + '%';
+                line.style.transform = `skewY(${Math.random() * 4 - 2}deg)`;
+                quantumField.appendChild(line);
+            }
+            
+            // Create hexagon grid
+            const hexPositions = [
+                {x: 50, y: 20}, {x: 80, y: 35}, {x: 95, y: 65},
+                {x: 80, y: 95}, {x: 50, y: 110}, {x: 20, y: 95},
+                {x: 5, y: 65}, {x: 20, y: 35}
+            ];
+            
+            hexPositions.forEach(pos => {
+                const hex = document.createElement('div');
+                hex.className = 'hex';
+                hex.style.left = `calc(50% + ${pos.x - 50}px)`;
+                hex.style.top = `calc(50% + ${pos.y - 65}px)`;
+                hexGrid.appendChild(hex);
+            });
+            
+            // Create plasma particles
+            for (let i = 0; i < 40; i++) {
                 const particle = document.createElement('div');
-                particle.className = 'particle';
-                const angle = (i / 30) * Math.PI * 2;
-                const radius = 150;
-                particle.style.left = (200 + Math.cos(angle) * radius) + 'px';
-                particle.style.top = (200 + Math.sin(angle) * radius) + 'px';
+                particle.className = 'plasma-particle';
+                const angle = (i / 40) * Math.PI * 2;
+                const radius = 180;
+                particle.style.left = (225 + Math.cos(angle) * radius) + 'px';
+                particle.style.top = (225 + Math.sin(angle) * radius) + 'px';
+                
+                const colors = ['#8b5cf6', '#ec4899', '#06b6d4', '#10b981'];
+                particle.style.color = colors[i % colors.length];
+                
                 frame.appendChild(particle);
             }
             
-            // Create hexagons (Bowden philosophy - precision)
-            for (let i = 0; i < 6; i++) {
-                const hex = document.createElement('div');
-                hex.className = 'hex';
-                const angle = (i / 6) * Math.PI * 2;
-                const radius = 120;
-                hex.style.left = (190 + Math.cos(angle) * radius) + 'px';
-                hex.style.top = (190 + Math.sin(angle) * radius) + 'px';
-                frame.appendChild(hex);
-            }
-            
-            // Ambient background particles
-            for (let i = 0; i < 50; i++) {
-                const ambient = document.createElement('div');
-                ambient.className = 'ambient-particle';
-                ambient.style.left = Math.random() * 100 + '%';
-                ambient.style.top = Math.random() * 100 + '%';
-                document.body.appendChild(ambient);
+            // Create data streams
+            for (let i = 0; i < 12; i++) {
+                const stream = document.createElement('div');
+                stream.className = 'data-stream';
+                const angle = (i / 12) * Math.PI * 2;
+                const radius = 140;
+                stream.style.left = (225 + Math.cos(angle) * radius) + 'px';
+                stream.style.top = (225 + Math.sin(angle) * radius) + 'px';
+                stream.style.transform = `rotate(${(i / 12) * 360}deg)`;
+                frame.appendChild(stream);
             }
             
             runAnimation();
         }
         
         function runAnimation() {
-            // Pulse rings
+            // Quantum field pulse
             anime({
-                targets: '.pulse-ring',
-                scale: [0.8, 1.4],
-                opacity: [0.6, 0],
+                targets: '.field-line',
+                opacity: [0.1, 0.4, 0.1],
+                duration: 4000,
+                delay: anime.stagger(200),
+                loop: true,
+                easing: 'easeInOutSine'
+            });
+            
+            // Energy waves
+            anime({
+                targets: '.energy-wave',
+                scale: [0.7, 1.5],
+                opacity: [0.8, 0],
                 duration: 3000,
                 delay: anime.stagger(1500),
                 loop: true,
                 easing: 'easeOutQuad'
             });
             
-            // Particles flowing in circle (harmony)
+            // Plasma particles orbital
             anime({
-                targets: '.particle',
+                targets: '.plasma-particle',
                 translateX: function(el, i) {
-                    const angle = (i / 30) * Math.PI * 2;
-                    return Math.cos(angle) * 10;
+                    const angle = (i / 40) * Math.PI * 2;
+                    return Math.cos(angle + Math.PI / 4) * 15;
                 },
                 translateY: function(el, i) {
-                    const angle = (i / 30) * Math.PI * 2;
-                    return Math.sin(angle) * 10;
+                    const angle = (i / 40) * Math.PI * 2;
+                    return Math.sin(angle + Math.PI / 4) * 15;
                 },
-                opacity: [0.3, 1, 0.3],
-                scale: [0.5, 1.5, 0.5],
-                duration: 3000,
-                delay: anime.stagger(100),
+                scale: [0.5, 1.8, 0.5],
+                opacity: [0.2, 1, 0.2],
+                duration: 4000,
+                delay: anime.stagger(80),
                 loop: true,
                 easing: 'easeInOutSine'
             });
             
-            // Hexagons precision pulse
+            // Data streams
             anime({
-                targets: '.hex',
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.8, 0.3],
-                rotate: [0, 60, 0],
-                duration: 4000,
-                delay: anime.stagger(200),
+                targets: '.data-stream',
+                opacity: [0, 0.8, 0],
+                translateY: [-20, 60],
+                duration: 2000,
+                delay: anime.stagger(150),
                 loop: true,
                 easing: 'easeInOutQuad'
             });
             
-            // Central key emergence
+            // Hexagon glitch
+            anime({
+                targets: '.hex',
+                scale: [1, 1.3, 1],
+                opacity: [0.2, 0.7, 0.2],
+                rotate: [0, 120, 0],
+                duration: 5000,
+                delay: anime.stagger(300),
+                loop: true,
+                easing: 'easeInOutCubic'
+            });
+            
+            // Central key dramatic entrance
             anime.timeline()
                 .add({
                     targets: '.central-key',
-                    scale: [0, 1.2, 1],
+                    scale: [0, 1.4, 1],
                     opacity: [0, 1],
                     rotate: [180, 0],
-                    duration: 1500,
-                    easing: 'easeOutElastic(1, 0.6)'
-                });
+                    duration: 2000,
+                    easing: 'easeOutElastic(1, 0.5)'
+                })
+                .add({
+                    targets: '.key-bg',
+                    rotate: [0, 360],
+                    duration: 20000,
+                    loop: true,
+                    easing: 'linear'
+                }, 0);
             
-            // Company name reveal
+            // Company name reveal with glitch
             anime.timeline()
                 .add({
                     targets: '.name-part',
                     opacity: [0, 1],
-                    translateY: [30, 0],
-                    duration: 1200,
-                    delay: anime.stagger(200, {start: 1000}),
+                    translateY: [40, 0],
+                    duration: 1500,
+                    delay: anime.stagger(300, {start: 1200}),
                     easing: 'easeOutExpo'
                 })
                 .add({
                     targets: '.philosophy-line',
                     opacity: [0, 1],
                     translateY: [20, 0],
-                    duration: 1000,
+                    duration: 1200,
                     easing: 'easeOutQuad'
-                }, '-=400');
-            
-            // Ambient particles float
-            anime({
-                targets: '.ambient-particle',
-                translateY: [
-                    { value: -100, duration: 8000 },
-                    { value: 0, duration: 8000 }
-                ],
-                translateX: function() {
-                    return anime.random(-50, 50);
-                },
-                opacity: [0, 0.5, 0],
-                duration: 16000,
-                delay: anime.stagger(300),
-                loop: true,
-                easing: 'linear'
-            });
+                }, '-=600');
         }
         
         // Replay on click
