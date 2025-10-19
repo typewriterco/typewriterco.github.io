@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypewriterCo Logo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #0a0a15 0%, #000000 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+        
+        .logo-container {
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Yin-Yang inspired circular frame */
+        .circle-frame {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            margin: 0 auto;
+        }
+        
+        .outer-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            background: linear-gradient(#0a0a15, #0a0a15) padding-box,
+                        linear-gradient(135deg, #4a5568, #64748b, #0ea5e9, #06b6d4) border-box;
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .inner-symbol {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+        }
+        
+        /* Typewriter key in center - represents precision (Bowden) */
+        .central-key {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 2px solid #0ea5e9;
+            border-radius: 8px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: #06b6d4;
+            font-weight: bold;
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.4),
+                        inset 0 0 20px rgba(6, 182, 212, 0.15);
+        }
+        
+        /* Flowing particles - represents harmony/flow (Jong) */
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #0ea5e9;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #0ea5e9;
+        }
+        
+        /* Hexagonal precision markers (industrial) */
+        .hex {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: rgba(71, 85, 105, 0.25);
+            border: 1px solid #475569;
+        }
+        
+        /* Company name - futuristic typography */
+        .brand-container {
+            margin-top: 40px;
+            position: relative;
+        }
+        
+        .company-name {
+            font-size: 56px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin: 0;
+            position: relative;
+        }
+        
+        .name-part {
+            display: inline-block;
+            opacity: 0;
+        }
+        
+        .typewriter-text {
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #67e8f9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            letter-spacing: 4px;
+        }
+        
+        .co-text {
+            background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 200;
+            margin-left: 8px;
+        }
+        
+        /* Philosophical tagline */
+        .philosophy-line {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 20px;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0;
+        }
+        
+        .philosophy-part {
+            color: #0ea5e9;
+            position: relative;
+        }
+        
+        .divider {
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #475569, transparent);
+        }
+        
+        /* Energy lines - balance concept */
+        .energy-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #06b6d4, transparent);
+            width: 0;
+            opacity: 0;
+        }
+        
+        /* Background ambient particles */
+        .ambient-particle {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: rgba(14, 165, 233, 0.25);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .pulse-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #06b6d4;
+            border-radius: 50%;
+            opacity: 0;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container" id="logoContainer">
+        <div class="circle-frame">
+            <div class="outer-ring"></div>
+            <div class="pulse-ring"></div>
+            <div class="pulse-ring" style="animation-delay: 0.5s;"></div>
+            
+            <div class="inner-symbol">
+                <!-- Central typewriter key -->
+                <div class="central-key">T</div>
+            </div>
+        </div>
+        
+        <div class="brand-container">
+            <h1 class="company-name">
+                <span class="name-part typewriter-text">TYPEWRITER</span><span class="name-part co-text">CO</span>
+            </h1>
+            
+            <div class="philosophy-line">
+                <span class="philosophy-part">Precision</span>
+                <div class="divider"></div>
+                <span class="philosophy-part">Flow</span>
+                <div class="divider"></div>
+                <span class="philosophy-part">Transform</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function initAnimation() {
+            const frame = document.querySelector('.circle-frame');
+            
+            // Create flowing particles (Jong philosophy - flow)
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const angle = (i / 30) * Math.PI * 2;
+                const radius = 150;
+                particle.style.left = (200 + Math.cos(angle) * radius) + 'px';
+                particle.style.top = (200 + Math.sin(angle) * radius) + 'px';
+                frame.appendChild(particle);
+            }
+            
+            // Create hexagons (Bowden philosophy - precision)
+            for (let i = 0; i < 6; i++) {
+                const hex = document.createElement('div');
+                hex.className = 'hex';
+                const angle = (i / 6) * Math.PI * 2;
+                const radius = 120;
+                hex.style.left = (190 + Math.cos(angle) * radius) + 'px';
+                hex.style.top = (190 + Math.sin(angle) * radius) + 'px';
+                frame.appendChild(hex);
+            }
+            
+            // Ambient background particles
+            for (let i = 0; i < 50; i++) {
+                const ambient = document.createElement('div');
+                ambient.className = 'ambient-particle';
+                ambient.style.left = Math.random() * 100 + '%';
+                ambient.style.top = Math.random() * 100 + '%';
+                document.body.appendChild(ambient);
+            }
+            
+            runAnimation();
+        }
+        
+        function runAnimation() {
+            // Pulse rings
+            anime({
+                targets: '.pulse-ring',
+                scale: [0.8, 1.4],
+                opacity: [0.6, 0],
+                duration: 3000,
+                delay: anime.stagger(1500),
+                loop: true,
+                easing: 'easeOutQuad'
+            });
+            
+            // Particles flowing in circle (harmony)
+            anime({
+                targets: '.particle',
+                translateX: function(el, i) {
+                    const angle = (i / 30) * Math.PI * 2;
+                    return Math.cos(angle) * 10;
+                },
+                translateY: function(el, i) {
+                    const angle = (i / 30) * Math.PI * 2;
+                    return Math.sin(angle) * 10;
+                },
+                opacity: [0.3, 1, 0.3],
+                scale: [0.5, 1.5, 0.5],
+                duration: 3000,
+                delay: anime.stagger(100),
+                loop: true,
+                easing: 'easeInOutSine'
+            });
+            
+            // Hexagons precision pulse
+            anime({
+                targets: '.hex',
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.8, 0.3],
+                rotate: [0, 60, 0],
+                duration: 4000,
+                delay: anime.stagger(200),
+                loop: true,
+                easing: 'easeInOutQuad'
+            });
+            
+            // Central key emergence
+            anime.timeline()
+                .add({
+                    targets: '.central-key',
+                    scale: [0, 1.2, 1],
+                    opacity: [0, 1],
+                    rotate: [180, 0],
+                    duration: 1500,
+                    easing: 'easeOutElastic(1, 0.6)'
+                });
+            
+            // Company name reveal
+            anime.timeline()
+                .add({
+                    targets: '.name-part',
+                    opacity: [0, 1],
+                    translateY: [30, 0],
+                    duration: 1200,
+                    delay: anime.stagger(200, {start: 1000}),
+                    easing: 'easeOutExpo'
+                })
+                .add({
+                    targets: '.philosophy-line',
+                    opacity: [0, 1],
+                    translateY: [20, 0],
+                    duration: 1000,
+                    easing: 'easeOutQuad'
+                }, '-=400');
+            
+            // Ambient particles float
+            anime({
+                targets: '.ambient-particle',
+                translateY: [
+                    { value: -100, duration: 8000 },
+                    { value: 0, duration: 8000 }
+                ],
+                translateX: function() {
+                    return anime.random(-50, 50);
+                },
+                opacity: [0, 0.5, 0],
+                duration: 16000,
+                delay: anime.stagger(300),
+                loop: true,
+                easing: 'linear'
+            });
+        }
+        
+        // Replay on click
+        document.getElementById('logoContainer').addEventListener('click', () => {
+            location.reload();
+        });
+        
+        initAnimation();
+    </script>
+</body>
+</html>
